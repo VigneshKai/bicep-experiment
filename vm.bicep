@@ -3,10 +3,10 @@
 param virtualMachines_vm_name string = 'vm-name'
 param disks_vm_name_os_externalid string = '/subscriptions/6889ae45-3001-465d-9916-c2ef30f8ef51/resourceGroups/rg-name/providers/Microsoft.Compute/disks/vm-name-os'
 param networkInterfaces_vm_name_externalid string = '/subscriptions/6889ae45-3001-465d-9916-c2ef30f8ef51/resourceGroups/rg-name/providers/Microsoft.Network/networkInterfaces/vm-name-ser477'
-
+param location string = resourceGroup().location
 resource virtualMachines_vm_name_resource 'Microsoft.Compute/virtualMachines@2022-11-01' = {
   name: virtualMachines_vm_name
-  location: 'australiasoutheast'
+  location: location
   identity: {
     type: 'SystemAssigned'
   }
@@ -27,7 +27,6 @@ resource virtualMachines_vm_name_resource 'Microsoft.Compute/virtualMachines@202
         deleteOption: 'Detach'
         diskSizeGB: 32
       }
-      dataDisks: []
     }
     networkProfile: {
       networkInterfaces: [
