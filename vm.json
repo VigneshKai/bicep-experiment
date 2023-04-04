@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.15.31.15270",
+      "templateHash": "4101301869825438875"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "securestring",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "Environment": {
+      "type": "string",
+      "defaultValue": "dev"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2022-11-01",
+      "name": "[format('bb-vm-{0}', parameters('Environment'))]",
+      "location": "[parameters('location')]"
+    }
+  ]
+}
